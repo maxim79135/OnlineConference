@@ -8,7 +8,7 @@ const cp = require('crypto');
 const formidable = require('formidable');
 
 const host = 'onlineconference2.tk';
-const port = 443;
+const port = 4000;
 
 const soil = "mystring";
 const pg = require('pg');
@@ -51,8 +51,8 @@ function sendFile(filename, res) {
 }
 
 var https_options = {
-	key: fs.readFileSync("./host.key"),
-	cert: fs.readFileSync("./host.cert"),
+	key: fs.readFileSync("/etc/letsencrypt/live/onlineconference2.tk/privkey.pem"),
+	cert: fs.readFileSync("/etc/letsencrypt/live/onlineconference2.tk/fullchain.pem"),
 };
 
 
