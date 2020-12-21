@@ -196,6 +196,7 @@ function updateGuide(client, lastName, firstName, middleName, mail, hash, token,
             + token1
             + " WHERE token = '" + oldToken + "'";
 
+        console.log(str)
         client.query(str, (err, res) =>{
             if(err) console.log(err);
             resolve(res);
