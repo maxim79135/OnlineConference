@@ -1,0 +1,333 @@
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.main-color {
+    background: #FF9933!important;
+}
+
+.background-color {
+    background-color: #ebeae9!important;
+}
+
+.background-content-color {
+    background-color: rgba(255, 255, 255, 1.00) !important;
+}
+
+.display-inline-table{
+    display: inline-table;
+}
+
+.text-url, .text-url:hover, .text-url:active{
+    color: #000000;
+    text-decoration: none;
+}
+
+.btn-primary{
+    color: #fff;
+    background-color: #FF9933;
+    border-color: #FF9933;
+}
+
+
+.btn-primary.focus, .btn-primary:focus {
+    color: #fff;
+    background-color: #FF6E09;
+    border-color: #FF6E09;
+    box-shadow: 0px 0px 0px 0.2rem rgba(255, 85, 3, 0.5);
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0px 0px 0px 0.2rem rgba(255, 85, 3, 0.5);
+}
+.btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle, .btn-primary:hover {
+    color: #fff;
+    background-color: #FF6E09;
+    border-color: #FF6E09;
+}
+
+.sort.focus, .sort:focus {
+    outline: 0;
+}
+
+.sort {
+    display: inline-block;
+    font-weight: 400;
+    color: rgba(0, 102, 255, 1);;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.text-footer{
+    color: rgba(150, 150, 150, 1);
+}
+
+.btn-square {
+    border: none;
+    border-radius: 0;
+    height: 40px;
+}
+
+.btn-shadow-left{
+    box-shadow: inset -1px 0 1px 0 #b55a00;
+}
+
+.btn-shadow-right{
+    box-shadow: inset 1px 0 1px 0 #b55a00;
+}
+
+
+.card-title-bottom{
+    position: absolute;
+    color: #FFF;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.60);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Отменяем перенос текста */
+    overflow: hidden;
+}
+
+
+.card-title-bottom h5{
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Отменяем перенос текста */
+    overflow: hidden;
+}
+
+.card-title-bottom :hover{
+    white-space: normal;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    height: 100vh;
+}
+.content {
+    flex: 1 0 auto;
+}
+.footer {
+    flex: 0 0 auto;
+}
+
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #FF6E09;
+}
+
+.select-my, .select-my:hover {
+    outline: 0;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: rgba(0, 102, 255, 1);
+}
+
+.select-item-my{
+    color: #000000;
+}
+
+.select-item-my:active, .select-item-my:hover{
+    background-color: #FF6E09;
+}
+
+
+.text-no-data{
+    font-weight: bold;
+    font-size: large;
+}
+
+/*Стили входа*/
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 25px;
+    margin: 20% auto auto;
+}
+
+.form-control-sigin:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #FF6E09;
+    box-shadow: 0px 0px 0px 0.2rem rgba(255, 85, 3, 0.5);
+    outline: 0;
+}
+
+
+/*Страница not found*/
+
+.text-title {
+    font-weight: 800;
+    font-size: xx-large;
+    color: #FF6E09;
+}
+
+.text-content {
+    font-size: large;
+}
+
+/*Страница экскурсий*/
+
+.container-no-padding{
+     padding-right: 0;
+     padding-left: 0;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    padding: 15px 10px;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color:  #FF9933;
+    display: inline-block;
+    border-radius: .25rem;
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #FF6E09;
+}
+
+.inputfile + label {
+    cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile + label * {
+    pointer-events: none;
+}
+
+/*Лк*/
+.square-elem-lk{
+    border-radius: 0rem;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #FF6E09;
+    position: relative;
+}
+
+/*.dropdown-item.active:before {*/
+/*   content: '➤ ';*/
+/*    position: absolute;*/
+/*    left: 2%;*/
+/*}*/
+
+.dropdown-item.active:after {
+    content: '➤ ';
+    transform: rotate(180deg);
+    position: absolute;
+    right: 2%;
+}
+
+.btn-font-size {
+    font-size: 1rem;
+}
+
+/*Создание экскурсии*/
+
+.chous {
+    width: 180px;
+    height: 50px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    display: block;
+    font: 14px/50px Tahoma;
+    transition: all 0.18s ease-in-out;
+    border: 1px solid #FF9933;
+    background: #FF9933;
+    color: #ffffff;
+}
+
+.chous:hover {
+    color: white;
+    background: #FF6E09;
+}
+
+.my {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.loader {
+    background: none repeat scroll 0 0 #ebeae9;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+}
+.loader .loader_inner {
+    animation: animate 1.5s linear infinite;
+    clip: rect(0, 80px, 80px, 40px);
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    left: calc(50% - 40px);
+    top: calc(50% - 40px);
+}
+@keyframes animate {
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(220deg)
+    }
+}
+.loader .loader_inner:after {
+    animation: animate2 1.5s ease-in-out infinite;
+    clip: rect(0, 80px, 80px, 40px);
+    content:'';
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    position: absolute;
+}
+@keyframes animate2 {
+    0% {
+        box-shadow: inset #FF6E09 0 0 0 17px;
+        transform: rotate(-140deg);
+    }
+    50% {
+        box-shadow: inset #FF6E09 0 0 0 2px;
+    }
+    100% {
+        box-shadow: inset #FF6E09 0 0 0 17px;
+        transform: rotate(140deg);
+    }
+}

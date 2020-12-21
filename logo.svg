@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="54px" viewBox="0 0 60 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Directions</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-28.000000, -30.000000)">
+            <g id="Directions" transform="translate(28.000000, 30.000000)">
+                <path d="M29,54 C29,50.1340068 25.8659932,47 22,47 C18.1340068,47 15,50.1340068 15,54 L29,54 Z" id="Oval-4" fill="#80D25B"></path>
+                <path d="M41,54 C41,50.1340068 37.8659932,47 34,47 C30.1340068,47 27,50.1340068 27,54 L41,54 Z" id="Oval-4" fill="#80D25B"></path>
+                <path d="M57,54 C57,50.1340068 53.8659932,47 50,47 C46.1340068,47 43,50.1340068 43,54 L57,54 Z" id="Oval-4" fill="#22BA8E"></path>
+                <path d="M46,54 C46,51.2385763 43.7614237,49 41,49 C38.2385763,49 36,51.2385763 36,54 L46,54 Z" id="Oval-4" fill="#80D25B"></path>
+                <path d="M31,54 C31,51.2385763 28.7614237,49 26,49 C23.2385763,49 21,51.2385763 21,54 L31,54 Z" id="Oval-4" fill="#22BA8E"></path>
+                <path d="M53,41 L53,53" id="Line" stroke="#9C4D4D" stroke-width="2" stroke-linecap="square"></path>
+                <path d="M53,42 C56.8659932,42 60,39.8853535 60,27.5625 C60,15.2396465 56.8659932,0 53,0 C49.1340068,0 46,15.2396465 46,27.5625 C46,39.8853535 49.1340068,42 53,42 Z" id="Oval-3" fill="#22BA8E"></path>
+                <path d="M18,53 L18,22" id="Line" stroke="#9C4D4D" stroke-width="2" stroke-linecap="square"></path>
+                <polygon id="Rectangle-23" fill="#BD7575" points="19 25 32 25 36 29 32 33 19 33"></polygon>
+                <polygon id="Rectangle-23" fill="#BD7575" transform="translate(8.500000, 37.000000) scale(-1, 1) translate(-8.500000, -37.000000) " points="0 33 13 33 17 37 13 41 0 41"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

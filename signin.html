@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/popper.min.js" async></script>
+    <script src="js/bootstrap.min.js" async></script>
+    <script src="js/signin.js" async></script>
+</head>
+
+<body class="background-color">
+<div class="container">
+    <form class="form-signin">
+            <h1 class="h3 mb-3 font-weight-normal">Вход</h1>
+            <label for="inputEmail" class="sr-only">Email адрес</label>
+            <input type="email" id="inputEmail" class="form-control form-control-sigin" placeholder="Email адрес" required="" autofocus="">
+            <div class="invalid-feedback">
+                Email не содержит @ или пустое
+            </div>
+            <label for="inputPassword" class="sr-only">Пароль</label>
+            <input type="password" id="inputPassword" class="form-control form-control-sigin" placeholder="Пароль" required="">
+            <div class="invalid-feedback">
+                Поле обязательно для заполнения
+            </div>
+            <div class="alert alert-danger mt-3 d-none" role="alert" id="alertDanger">
+                Неверный логин или пароль
+            </div>
+            <button class="btn btn-lg btn-primary btn-block mt-5" type="submit" onclick="signIn()">Войти</button>
+            <a class="btn btn-lg btn-primary btn-block mt-1" href="/register">Зарегистрироваться</a>
+            <a class="btn btn-lg btn-primary btn-block mt-1" href="/">На главную страницу</a>
+        </form>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.cookie-1.4.1.min.js"></script>
+    <script src="js/jquery.maskedinput.min.js"></script>
+    <script src="js/popper.min.js" async></script>
+    <script src="js/bootstrap.min.js" async></script>
+    <script src="js/handlebars-v4.7.3.js"></script>
+    <script src="js/index.js" async></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конференции</title>
+</head>
+<body class="background-color wrapper" id="body">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark main-color">
+            <a class="d-flex text-url" href="#">
+                <!--- <img src="logo.png" height="40"/>--->
+                <div class="m-2">Сервис для регистрации на онлайн конференции</div>
+            </a>
+
+
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+
+                <div class="navbar-nav ml-auto" id="aSigIn">
+
+                </div>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- ОСНОВНОЕ СОДЕРЖИМОЕ -->
+
+    <section class="content mt-3">
+        <div class="container">
+            <div class="row">
+                <div class="background-content-color col-lg-3 display-inline-table">
+                    <div class="main-color row text-uppercase text-center p-1">
+                        <h4 class="flex-fill">Фильтры</h4>
+                    </div>
+                    <div class="row  text-center mt-2">
+                        <h5 class="flex-fill">Поиск конференций</h5>
+                    </div>
+                    <form>
+                        <div class="text-center">
+                            <label for="Today">Дата начала:</label>
+                            <div class="d-flex justify-content-center">
+                                <input class="input-group-text w-100" type="date" id="Today">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <label for="LastDay">Дата конца:</label>
+                            <div class="d-flex justify-content-center">
+                                <input class="input-group-text w-100" type="date" id="LastDay">
+                            </div>
+                        </div>
+                        <div class="alert alert-danger mt-3 d-none" role="alert" id="alertFilter">
+                            Неверный диапазон года. Диапазон может быть от 2000 до 2100
+                        </div>
+                        <div class="flex-fill mt-3 mb-3">
+                            <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="acceptFilter()">Применить</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="main-color offset-lg-1 col-lg-8">
+                    <div class="main-color row p-1">
+                        <h4 class="ml-3">Список конференций</h4>
+                        <div class="d-flex flex-fill justify-content-end ">
+                            <div class="h-100 d-flex flex-column justify-content-center">Сортировка по дате начала:</div>
+                            <select id="selectSort" class="select-my">
+                                <option id="selectOptionAsc" value="asc" class="select-item-my pt-2" selected>По возрастанию</option>
+                                <option id="selectOptionDesc" value="desc" class="select-item-my pt-2">По убыванию</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row background-content-color h-100" id="contentCard">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="background-color m-2">
+            <div class="text-center text-footer">Концеренции</div>
+        </div>
+    </footer>
+
+
+
+</body>
+
+<div id="myModal"></div>
+
+<script id="template-modal" type="text/x-handlebars-template">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Запись на экскурсию</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal" onclick="clearModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="sendDataUserForm">
+                    <div class="modal-body">
+                        <div class="alert alert-success d-none"  role="alert" id="alertSuccess">
+                            Вы успешно записались на конференцию. Сообщение придет Вам на почту
+                        </div>
+                        <div class="alert alert-danger d-none" role="alert" id="alertDanger">
+                            Произошла неизвестная ошибка. Возможно нет мест.
+                        </div>
+                        <div class="alert alert-danger d-none" role="alert" id="alertDangerParam">
+                            Фамилия, имя, отчество должны быть кириллицей или латиницей. Почта в формете text@domen
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLastName">Фамилия</label>
+                            <input type="text" id="inputLastName" class="form-control form-control-sigin inputCheck" placeholder="Фамилия" required="" autofocus="">
+                            <div class="invalid-feedback" id="invalidLastName">
+                                Поле обязательно для заполнения
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputFirstName">Имя</label>
+                            <input type="text" id="inputFirstName" class="form-control form-control-sigin inputCheck" placeholder="Имя" required="">
+                            <div class="invalid-feedback" id="invalidFirsName">
+                                Поле обязательно для заполнения
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputMiddleName">Отчество</label>
+                            <input type="text" id="inputMiddleName" class="form-control form-control-sigin inputCheck" placeholder="Отчество" >
+                            <div class="invalid-feedback" id="invalidFirsName">
+                                В отчестве могут быть только буквы
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail">Email адрес</label>
+                            <input type="email" id="inputEmail" class="form-control form-control-sigin" placeholder="Email адрес" required="" autofocus="">
+                            <div class="invalid-feedback">
+                                Email не содержит @ или пустое
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="sendDateForExcursion({{id}})">Отправить данные</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="template-header" type="text/x-handlebars-template">
+    {{#if auth}}
+        <a class="nav-item nav-link" href="lk">Личный кабинет</a>
+    {{else}}
+        <a class="nav-item nav-link" href="signin">Вход</a>
+        <a class="nav-item nav-link" href="register">Регистрация</a>
+    {{/if}}
+</script>
+
+<script id="template-card" type="text/x-handlebars-template">
+    {{#if data}}
+        {{#each data}}
+        <div class="card m-4 flex-grow-1" style="width: 11rem;">
+            <div class="position-relative">
+                <img src="excursion/{{guide_id}}/{{id}}/{{path}}" class="card-img-top" alt="...">
+                <div class="card-title-bottom">
+                    <h5 class="">{{title}} </h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Дата начала: {{date_start}}</h5>
+                <h5 class="card-title">Дата конца: {{date_end   }}</h5>
+                <h5 class="card-title">Осталось мест: {{count}}</h5>
+                <p class="card-text">Организатор: {{last_name}} {{first_name}} {{middle_name}}</p>
+            </div>
+            <div class="d-flex ">
+                <a href="excursion?id={{id}}" class="btn btn-primary flex-grow-1 btn-square">Подробнее</a>
+                <a href="#" class="btn btn-primary flex-grow-1 btn-square" data-toggle="modal" data-target="#exampleModalCenter" onclick="openModal({{id}})">Записаться</a>
+            </div>
+        </div>
+        {{/each}}
+    {{else}}
+        <div class="ml-3 col-md-12 text-center align-self-center text-no-data "> В данном диапазоне нет экскурсий</div>
+    {{/if}}
+</script>
+
+
+
+</html>

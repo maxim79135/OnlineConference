@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание экскурсии</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap&subset=cyrillic" rel="stylesheet">
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.cookie-1.4.1.min.js"></script>
+    <script src="js/popper.min.js" async></script>
+    <script src="js/bootstrap.min.js" async></script>
+    <script src="js/handlebars-v4.7.3.js" async></script>
+    <script src="js/edit_excursion.js" async></script>
+
+</head>
+<body class="background-color">
+<div class="container">
+    <form class="mt-5">
+        <div class="form-group">
+            <h5>Редактирование экскурсии</h5>
+        </div>
+        <div class="form-group">
+            <label for="inputTitle">Название экскурсии</label>
+            <input type="text" class="form-control form-control-sigin" id="inputTitle" aria-describedby="emailHelp"
+                   placeholder="Название экскурсии" required value="{{title}}">
+            <div class="invalid-feedback">
+                Поле обязательно для заполнения
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputDescription">Описание экскурсии</label>
+            <textarea type="text" class="form-control form-control-sigin" id="inputDescription"
+                      placeholder="Описание экскурсии" required>{{description}}</textarea>
+            <div class="invalid-feedback">
+                Поле обязательно для заполнения
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dateStart">Дата начала</label>
+            <input type="datetime-local" class="form-control form-control-sigin" id="dateStart"
+                   placeholder="Описание экскурсии" required value="{{dateStart}}">
+            <div class="invalid-feedback">
+                Поле обязательно для заполнения
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dateEnd">Дата конца</label>
+            <input type="datetime-local" class="form-control form-control-sigin" id="dateEnd"
+                   placeholder="Описание экскурсии" required value="{{dateEnd}}">
+            <div class="invalid-feedback">
+                Поле обязательно для заполнения
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputNumberOfSeats">Максимальное количество человек</label>
+            <input type="number" min="1" max="100" step="1" class="form-control form-control-sigin"
+                   id="inputNumberOfSeats" required value="{{numberOfSeats}}"/>
+            <div class="invalid-feedback">
+                Поле обязательно для заполнения
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputYMap">Скрипт с яндекс конструктора</label>
+            <textarea type="text" class="form-control form-control-sigin" id="inputYMap"
+                      placeholder="Код скрипта с яндекс конструктора" required>{{scriptMap}}</textarea>
+            <small id="inputYMapText" class="form-text text-muted">Ссылка для создание маршрута с помощью яндекс
+                маршрута. Вставьте код карты iframe</small>
+            <div class="invalid-feedback">
+                Поле обязательно для заполнения
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="d-none" id="secretInput">{{countPaths}}</div>
+            {{#each paths}}
+            <div class="row ml-1 mb-2" id="image{{id}}">
+                <img src="/excursion/{{idGuide}}/{{idExcursion}}/{{path}}" height="150"/>
+                <div class="align-self-center ml-3">
+                    <button class="ml- 2 btn btn-lg btn-primary square-elem-lk btn-font-size"
+                            onclick="openModal({{id}}, '/excursion/{{idGuide}}/{{idExcursion}}/{{path}}')">Удалить
+                    </button>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <div class="form-group" id="blockFile">
+            <label for="myFile" class="chous">Выберите файлы</label>
+            <input type="file" class="my is-invalid" id="myFile" name="myFile" multiple="multiple"
+                   accept="image/jpeg,image/png" required/>
+            <div class="invalid-feedback" id="feedback">
+
+            </div>
+        </div>
+
+        <div class="alert alert-danger mt-3 d-none" role="alert" id="alertDanger">
+
+        </div>
+
+        <div class="form-group" id="loader">
+
+        </div>
+        <div class="d-none" id="secretInputId">{{id}}</div>
+        <a type="submit" class="btn btn-primary" href="/lk">Назад</a>
+        <button type="submit" class="btn btn-primary" onclick="editExcursion()">Изменить</button>
+    </form>
+</div>
+
+</body>
+
+<div id="myModal">
+
+</div>
+
+<script id="template-loader" type="text/x-handlebars-template">
+    <div class="loader">
+        <div class="loader_inner"></div>
+    </div>
+</script>
+</html>

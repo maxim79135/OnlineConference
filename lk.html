@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.cookie-1.4.1.min.js"></script>
+    <script src="js/jquery.maskedinput.min.js"></script>
+    <script src="js/popper.min.js" async></script>
+    <script src="js/bootstrap.min.js" async></script>
+    <script src="js/lk.js" async></script>
+    <script src="js/handlebars-v4.7.3.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body class="background-color wrapper ">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark main-color">
+        <a class="d-flex text-url" href="/">
+            <img src="logo.png" height="40">
+            <div class="m-2">Личный кабинет</div>
+        </a>
+
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="#" onclick="exitAccount()">Выход</a>
+            </div>
+        </div>
+
+    </nav>
+</header>
+
+<section class="content mt-3 container">
+    <div class="container">
+        <div class="row">
+            <div class="background-content-color col-lg-3 display-inline-table">
+                <div class="main-color row text-uppercase text-center p-1">
+                    <h4 class="flex-fill">Разделы</h4>
+                </div>
+                <div class="dropdown flex-fill"></div>
+
+                <a class="dropdown-item row w-auto active" href="#" id="aExcursion" onclick="openExcursion()">Ваши
+                    экскурсии</a>
+                <a class="dropdown-item row w-auto" href="#" id="aPersonalData" onclick="openPersonalData()">Личные
+                    данные</a>
+            </div>
+            <div class="main-color offset-lg-1 col-lg-8" id="mainContent"></div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="background-color m-2">
+        <div class="text-center text-footer">Экскурсии 2020</div>
+    </div>
+</footer>
+
+<div id="myModal"></div>
+
+<script id="template-modal" type="text/x-handlebars-template">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Удаление</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Желаете удалить экскурсию: {{title}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary" onclick="deleteExcursion({{id}})">Подтвердить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="template-personal-data" type="text/x-handlebars-template">
+    <div class="main-color offset-lg-1 col-lg-8" id="mainContent">
+        <div class="main-color row p-1">
+            <h4 class="ml-3">Личные данные</h4>
+        </div>
+
+        <div class="row background-content-color ">
+            <form class="flex-column flex-fill p-3">
+                <div class="form-group">
+                    <label for="inputLastName">Фамилия</label>
+                    <input type="text" id="inputLastName" class="form-control form-control-sigin" placeholder="Фамилия"
+                           required="" autofocus="" value="{{guide.last_name}}">
+                    <div class="invalid-feedback" id="invalidLastName">
+                        Поле обязательно для заполнения
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputFirstName">Имя</label>
+                    <input type="text" id="inputFirstName" class="form-control form-control-sigin" placeholder="Имя"
+                           required="" value="{{guide.first_name}}">
+                    <div class="invalid-feedback" id="invalidFirstName">
+                        Поле обязательно для заполнения
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputMiddleName">Отчество</label>
+                    <input type="text" id="inputMiddleName" class="form-control form-control-sigin"
+                           placeholder="Отчество" value="{{guide.middle_name}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail">Email адрес</label>
+                    <input type="email" id="inputEmail" class="form-control form-control-sigin"
+                           placeholder="Email адрес" required="" value="{{guide.mail}}">
+                    <div class="invalid-feedback" id="invalidEmail">
+                        Поле обязательно для заполнения
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword">Пароль</label>
+                    <input type="password" id="inputPassword" class="form-control form-control-sigin"
+                           placeholder="Пароль">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputConfirmPassword">Подтвердите пароль</label>
+                    <input type="password" id="inputConfirmPassword" class="form-control form-control-sigin"
+                           placeholder="Подтвердите пароль">
+                    <div class="invalid-feedback" id="invalidConfirmPassword">
+                        Поле не совпадет с паролем
+                    </div>
+                </div>
+
+
+                <div class="alert alert-success d-none" role="alert" id="alertPersonalData">
+                    Данные успешно сохранены
+                </div>
+
+                <div class="alert alert-danger d-none" role="alert" id="alertDanger">
+                Данные успешно сохранены
+        </div>
+
+                <div>
+                    <button class="btn btn-lg btn-primary w-100 mt-3 square-elem-lk" onclick="savePersonalData()">
+                        Сохранить изменения
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>
+
+<script id="template-excursion" type="text/x-handlebars-template">
+    <div class="main-color offset-lg-1 col-lg-8" id="mainContent">
+        <div class="main-color row p-1">
+            <h4 class="ml-3">Ваши экскурсии</h4>
+        </div>
+
+        <div class="row background-content-color ">
+            <div class="flex-column flex-fill">
+
+                <div id="accordion" class="">
+                    {{#each excursions}}
+                        <div class="card square-elem-lk" id="{{id}}">
+                            <div class="card-header" id="heading{{id}}">
+                                <h5 class="mb-0">
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{id}} "
+                                                aria-expanded="true" aria-controls="collapseOne" id="buttonTitle{{id}}" value="{{title}}">
+                                            {{title}}
+                                        </button>
+                                        <div>
+                                            <a class="btn btn-lg btn-primary square-elem-lk btn-font-size"
+                                                    href="/edit_excursion?id={{id}}">Изменить
+                                            </a>
+                                            <button class="ml- 2 btn btn-lg btn-primary square-elem-lk btn-font-size"
+                                                    onclick="openModal({{id}})">Удалить
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </h5>
+                            </div>
+
+                            <div id="collapse{{id}}" class="collapse" aria-labelledby="heading{{id}}"
+                                 data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row">
+                                        <h5>Осталось мест: {{count}}</h5>
+                                    </div>
+                                    <div class="d-flex flex-row">
+                                        <h5>Дата начала: {{dateStart}}</h5>
+                                    </div>
+                                    <div class="d-flex flex-row">
+                                        <h5>Дата конца: {{dateEnd}}</h5>
+                                    </div>
+                                    <p>{{description}}</p>
+                                    {{{scriptMap}}}
+                                    <h5 class="mt-3">Таблица записавшихся людей</h5>
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">ФИО</th>
+                                            <th scope="col">Почта</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {{#each users}}
+                                            <tr>
+                                                <th scope="row">{{@index}}</th>
+                                                <td>{{lastName}} {{firstName}} {{middleName}}</td>
+                                                <td>{{mail}}</td>
+                                            </tr>
+                                        {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+
+                <div>
+                    <a class="btn btn-lg btn-primary w-100 mt-3 square-elem-lk" href="/create_excursion">Создать экскурсию</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</script>
+</body>
+</html>
