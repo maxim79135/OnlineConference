@@ -7,7 +7,7 @@ const moment = require('moment');
 const cp = require('crypto');
 const formidable = require('formidable');
 
-const host = '194.87.101.173';
+const host = 'onlineconference2.tk';
 const port = 3500;
 
 const soil = "mystring";
