@@ -74,6 +74,10 @@ const server = https.createServer(https_options,
                         sendFile(__dirname + '/index.html', res);
                         break;
                     }
+                    case "/.well-known/pki-validation/73B128BD4EFBA6B430266DDA663D2082.txt": {
+                        sendFile(__dirname + '/index.html', res);
+                        break;
+                    }
                     case "/": {
                         sendFile(__dirname + '/index.html', res);
                         break;
