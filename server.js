@@ -8,6 +8,7 @@ const cp = require('crypto');
 const formidable = require('formidable');
 
 const host = 'onlineconference2.tk';
+const port = 8000;
 
 const soil = "mystring";
 const pg = require('pg');
@@ -1133,6 +1134,6 @@ function returnFile(path, res) {
 }
 
 
-server.listen(host, () => {
+server.listen(port, host, () => {
     console.log('Start server')
 });
