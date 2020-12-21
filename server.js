@@ -566,6 +566,7 @@ const server = https.createServer(https_options,
 
                     break;
                 }
+
                 case '/ajax/get_excursion': {
                     let body = [];
 
@@ -723,7 +724,6 @@ const server = https.createServer(https_options,
                     break;
                 }
 
-
                 case '/ajax/create_excursion': {
 
                     var form = new formidable.IncomingForm({keepExtensions: true, multiples: true});
@@ -755,7 +755,7 @@ const server = https.createServer(https_options,
                                 code6 = 1;
                             mes = {
                                 status: 'empty fields', title: code, description: code1,
-                                dateStart: code2, dateEnd: code3, maxNumber: code4, yaMap: code5, files: code6
+                                dateStart: code2, dateEnd: code3, maxNumber: code4, Url: code5, files: code6
                             };
                             res.statusCode = 200;
                             res.end(global.JSON.stringify(mes));
@@ -792,26 +792,6 @@ const server = https.createServer(https_options,
                                             res.statusCode = 200;
                                             res.end(global.JSON.stringify(mes));
                                         } else {
-
-
-                                            if (fields[6].startsWith("<iframe src=") && fields[6].endsWith("></iframe>") && fields[6].includes("width=") && fields[6].includes("height=")) {
-                                                let str = fields[6].toLowerCase();
-                                                let widthIndexStart = str.indexOf('width="') + 'width="'.length;
-                                                let widthIndexEnd = widthIndexStart;
-                                                for (widthIndexEnd; widthIndexEnd < str.length; widthIndexEnd++) {
-                                                    if (str[widthIndexEnd] == '"')
-                                                        break;
-                                                }
-                                                //let widthIndexEnd = str.substr(widthIndexStart+'width="'.length, 4);
-                                                let heightIndexStart = str.indexOf('height="') + 'height="'.length;
-                                                let heightIndexEnd = heightIndexStart;
-                                                for (heightIndexEnd; heightIndexEnd < str.length; heightIndexEnd++) {
-                                                    if (str[heightIndexEnd] == '"')
-                                                        break;
-                                                }
-
-                                                let newMap = str.substring(0, widthIndexStart) + "100%" + str.substring(widthIndexEnd, heightIndexStart) + "500" + str.substring(heightIndexEnd, str.length);
-
                                                 //Добавить экскурсию и пути файлов
                                                 db.getInfo(client, fields[0]).then(value => {
                                                     if (value.length == 0) {
@@ -819,7 +799,7 @@ const server = https.createServer(https_options,
                                                         return;
                                                     } else {
                                                         let path = `/excursion/${value[0].id}/`;
-                                                        db.addExcursion(client, fields[1], fields[2], fields[3], fields[4], fields[5], newMap, path, value[0].id).then(value1 => {
+                                                        db.addExcursion(client, fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], path, value[0].id).then(value1 => {
                                                             if (value1 != -1) {
                                                                 if (!fs.existsSync(`${__dirname}/excursion/${value[0].id}`)) {
                                                                     fs.mkdirSync(`${__dirname}/excursion/${value[0].id}`)
@@ -852,12 +832,6 @@ const server = https.createServer(https_options,
                                                         })
                                                     }
                                                 });
-                                            } else {
-                                                let mes = {status: "error format map"};
-                                                res.statusCode = 200;
-                                                res.end(global.JSON.stringify(mes));
-                                            }
-
                                         }
                                     }
                                 } else {

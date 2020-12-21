@@ -12,7 +12,7 @@ $("form").submit(function () {
         let dateStart = $("#dateStart").val();
         let dateEnd = $("#dateEnd").val();
         let maxNumber = $("#inputMaxNumber").val();
-        let yaMap = $("#inputYandexConstructor").val();
+        let Url = $("#inputUrl").val();
         let flag = true;
 
         if(title.length == 0){
@@ -45,11 +45,11 @@ $("form").submit(function () {
         } else{
             $("#inputMaxNumber")[0].classList.remove("is-invalid");
         }
-        if(yaMap.length == 0){
-            $("#inputYandexConstructor")[0].classList.add("is-invalid");
+        if(Url.length == 0){
+            $("#inputUrl")[0].classList.add("is-invalid");
             flag = false;
         } else{
-            $("#inputYandexConstructor")[0].classList.remove("is-invalid");
+            $("#inputUrl")[0].classList.remove("is-invalid");
         }
         if(flag){
             formData.append("token", $.cookie('token'));
@@ -58,7 +58,7 @@ $("form").submit(function () {
             formData.append("dateStart", dateStart);
             formData.append("dateEnd", dateEnd);
             formData.append("maxNumber", maxNumber);
-            formData.append("yandexConstructor", yaMap);
+            formData.append("Url", Url);
             for(let item of document.getElementById("myFile").files){
                 formData.append("files", item);
             }
@@ -84,12 +84,6 @@ $("form").submit(function () {
                         }
                         case "wrong type maxNumber": {
                             $("#alertDanger").html("Количество поситителей целое число");
-                            replaceAlert("#alertDanger", "d-none","d-block");
-                            $('#loader').remove();
-                            break;
-                        }
-                        case "error format map": {
-                            $("#alertDanger").html("Неверный формат iframe. iframe должен содержать тег iframe и поля src, width, height");
                             replaceAlert("#alertDanger", "d-none","d-block");
                             $('#loader').remove();
                             break;
@@ -128,8 +122,8 @@ $("form").submit(function () {
                             if(r['maxNumber'] == 1){
                                 $("#inputMaxNumber")[0].classList.add("is-invalid");
                             }
-                            if(r['yaMap'] == 1) {
-                                $("#inputYandexConstructor")[0].classList.add("is-invalid");
+                            if(r['Url'] == 1) {
+                                $("#Url")[0].classList.add("is-invalid");
                             }
                             if(r['files'] == 1) {
                                 $("#myFile")[0].classList.add("is-invalid");
