@@ -167,7 +167,7 @@ function getExcursionForGuide(client, guideId, count, offset){
                                 dateStart: moment(exc.date_start).format('DD.MM.YYYY, h:mm'),
                                 dateEnd: moment(exc.date_end).format('DD.MM.YYYY, h:mm'),
                                 count: exc.count,
-                                scriptMap: exc.script_map,
+                                Url: exc.script_map,
                                 users: exc_user
                             })
                         }

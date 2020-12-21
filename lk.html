@@ -49,7 +49,7 @@
                 <div class="dropdown flex-fill"></div>
 
                 <a class="dropdown-item row w-auto active" href="#" id="aExcursion" onclick="openExcursion()">Ваши
-                    экскурсии</a>
+                    созданные конференции</a>
                 <a class="dropdown-item row w-auto" href="#" id="aPersonalData" onclick="openPersonalData()">Личные
                     данные</a>
             </div>
@@ -62,7 +62,7 @@
 <!-- FOOTER -->
 <footer class="footer">
     <div class="background-color m-2">
-        <div class="text-center text-footer">Экскурсии 2020</div>
+        <div class="text-center text-footer">Конференции</div>
     </div>
 </footer>
 
@@ -170,7 +170,7 @@
 <script id="template-excursion" type="text/x-handlebars-template">
     <div class="main-color offset-lg-1 col-lg-8" id="mainContent">
         <div class="main-color row p-1">
-            <h4 class="ml-3">Ваши экскурсии</h4>
+            <h4 class="ml-3">Ваши созданные конференции</h4>
         </div>
 
         <div class="row background-content-color ">
@@ -212,7 +212,7 @@
                                         <h5>Дата конца: {{dateEnd}}</h5>
                                     </div>
                                     <p>{{description}}</p>
-                                    {{{scriptMap}}}
+                                    <a href="{{Url}}"/>
                                     <h5 class="mt-3">Таблица записавшихся людей</h5>
                                     <table class="table table-striped">
                                         <thead>
@@ -239,7 +239,7 @@
                 </div>
 
                 <div>
-                    <a class="btn btn-lg btn-primary w-100 mt-3 square-elem-lk" href="/create_excursion">Создать экскурсию</a>
+                    <a class="btn btn-lg btn-primary w-100 mt-3 square-elem-lk" href="/create_excursion">Создать новую конференцию</a>
                 </div>
 
             </div>
