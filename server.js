@@ -8,7 +8,7 @@ const cp = require('crypto');
 const formidable = require('formidable');
 
 const host = 'onlineconference2.tk';
-const port = 8080;
+const port = 443;
 
 const soil = "mystring";
 const pg = require('pg');
