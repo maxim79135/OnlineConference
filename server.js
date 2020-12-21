@@ -1,4 +1,4 @@
-const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const db = require('./js/database');
 const qs = require("querystring");
@@ -7,7 +7,7 @@ const moment = require('moment');
 const cp = require('crypto');
 const formidable = require('formidable');
 
-const host = 'localhost';
+const host = '194.87.101.173';
 const port = 3500;
 
 const soil = "mystring";
@@ -50,9 +50,14 @@ function sendFile(filename, res) {
     });
 }
 
+var https_options = {
+	key: fs.readFileSync("./host.key"),
+	cert: fs.readFileSync("./host.cert"),
+};
 
-const server = http.createServer(
-    (req, res) => {
+
+const server = https.createServer(https_options, 
+    function (req, res)  {
         if (req.method === 'GET') {
 
             if (fileRules.test(req.url)) {
