@@ -827,7 +827,7 @@ const server = https.createServer(https_options,
                                                                 let pathsPsql = `'{`;
                                                                 for (let item of files) {
                                                                     console.log(item);
-                                                                    let path = item.path.slice(item.path.lastIndexOf("\\") + 1);
+                                                                    let path = item.path.slice(item.path.lastIndexOf("/") + 1);
                                                                     paths.push(path);
                                                                     pathsPsql += `"${path}",`;
                                                                     fs. copyFileSync(`${__dirname}/temp/${path}`, `${__dirname}/excursion/${value[0].id}/${value1}/${path}`);
@@ -1054,7 +1054,7 @@ const server = https.createServer(https_options,
                                                                     let pathsPsql = `'{`;
                                                                     for (let item of files) {
                                                                         console.log(item);
-                                                                        let path = item.path.slice(item.path.lastIndexOf("\\") + 1);
+                                                                        let path = item.path.slice(item.path.lastIndexOf("/") + 1);
                                                                         paths.push(path);
                                                                         pathsPsql += `"${path}",`;
                                                                         fs.copyFileSync(`${__dirname}/temp/${path}`, `${__dirname}/excursion/${value[0].id}/${fields[1]}/${path}`);
