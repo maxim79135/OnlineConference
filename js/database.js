@@ -184,7 +184,7 @@ function getExcursionForGuide(client, guideId, count, offset){
 function updateGuide(client, lastName, firstName, middleName, mail, hash, token, oldToken){
     return new Promise((resolve, reject) => {
         let middleName1 = ", middle_name = '" + middleName + "',";
-        let hash1 = hash != undefined ? ", hash = '" + hash + "'," : '';
+        let hash1 = hash != undefined ? ", hash = '" + hash + "'" : '';
         let token1 = token != undefined ? ", token = '" + token + "'" : '';
 
         let str = "update guides " +
